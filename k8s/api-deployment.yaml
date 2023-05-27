@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+      - name: api
+        image: registry.digitalocean.com/in2ai-sim/api
+        ports:
+        - containerPort: 3010
+        env:
+        - name: APP_PORT
+          value: "3010"
+        - name: APP_URL
+          value: api-clusterip
+        - name: ACCESS_TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: ACCESS_TOKEN_SECRET
+        - name: ACCESS_TOKEN_EXPIRES_IN
+          value: 30d
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MARIADB_NAME
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MARIADB_PASSWORD
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MARIADB_USER
+        - name: DB_HOST
+          value: db-clusterip
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_FORCE_SYNC
+          value: "false"
+        - name: DB_FORCE_ALTER
+          value: "false"
+        - name: SALT_ROUNDS
+          value: "10"
+        - name: DATE_FORMAT
+          value: DD/MM/YYYY h:mm:ss
+        - name: STRIPE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: STRIPE_SECRET_KEY
+        - name: WRANGLING_API_URL
+          value: wran-clusterip
+        - name: BMP_API_URL
+          value: bmp-clusterip
+        - name: CSTR_API_URL
+          value: cstr-clusterip
+        - name: MAIL_HOST
+          value: smtp.ethereal.email
+        - name: MAIL_PORT
+          value: "587"
+        - name: MAIL_USER
+          value: roselyn.lueilwitz60@ethereal.email
+        - name: MAIL_PASS
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MAIL_PASS

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cstr-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: cstr
+  template: 
+    metadata:
+      labels:
+        component: cstr
+    spec:
+      containers:
+        - name: cstr
+          image: registry.digitalocean.com/in2ai-sim/cstr
+          ports:
+            - containerPort: 80
+      

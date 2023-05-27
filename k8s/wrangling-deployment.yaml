@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wran-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: wran
+  template: 
+    metadata:
+      labels:
+        component: wran
+    spec:
+      containers:
+        - name: wran
+          image: registry.digitalocean.com/in2ai-sim/wrangling
+          ports:
+            - containerPort: 80
+      

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cstr-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    component: cstr
+  ports:
+    - port: 80
+      targetPort: 80

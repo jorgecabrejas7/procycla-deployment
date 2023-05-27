@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bmp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: bmp
+  template: 
+    metadata:
+      labels:
+        component: bmp
+    spec:
+      containers:
+        - name: bmp
+          image: registry.digitalocean.com/in2ai-sim/bmp
+          ports:
+            - containerPort: 80
+      

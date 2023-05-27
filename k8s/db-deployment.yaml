@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: db
+  template: 
+    metadata:
+      labels:
+        component: db
+    spec:
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: db-volume
+      containers:        
+        - env:
+            - name: MARIADB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MARIADB_NAME
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MARIADB_PASSWORD
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MARIADB_ROOT
+            - name: MARIADB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MARIADB_USER
+          name: db
+          image: mariadb
+          ports:
+            - containerPort: 3306
+          volumeMounts: 
+            - name: db-storage
+              mountPath: /var/lib/mysql
+              subPath: mysql
+              
+
+      

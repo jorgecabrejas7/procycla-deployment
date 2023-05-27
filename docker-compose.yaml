@@ -1,0 +1,121 @@
+version: "3"
+services:
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=procycla
+      - MARIADB_PASSWORD=procycla
+      - MARIADB_USER=procycla
+      - MARIADB_DATABASE=procycla
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.4
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./web-procycla-api
+    volumes:
+      - ./web-procycla-api:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    restart: always
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5    
+    environment:
+      - DEV=false
+      - APP_PORT=3010
+      - APP_URL=http://10.5.0.5:3010
+      - ACCESS_TOKEN_SECRET=ekWvcHLAwQQPVFiRHJae05WoSn6LEums7VK/pU1ikFs=
+      - ACCESS_TOKEN_EXPIRES_IN=30d
+      - DB_NAME=procycla
+      - DB_USER=procycla
+      - DB_PASS=procycla
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_FORCE_SYNC=false
+      - DB_FORCE_ALTER=false
+      - SALT_ROUNDS=10
+      - DATE_FORMAT=DD/MM/YYYY h:mm:ss
+      - STRIPE_SECRET_KEY=sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y
+      - WRANGLING_API_URL=http://10.5.0.9
+      - BMP_API_URL=http://10.5.0.7
+      - CSTR_API_URL=http://10.5.0.8
+      - MAIL_HOST=smtp.ethereal.email
+      - MAIL_PORT=587
+      - MAIL_USER=roselyn.lueilwitz60@ethereal.email
+      - MAIL_PASS=xgGSpd8Cr8TPxgWrpz
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: ./web-procycla
+    restart: always
+    volumes:
+      - ./web-procycla:/app
+      - /app/node_modules
+    links:
+      - api
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+    environment:
+      - NODE_ENV=production
+      - HTTPS=false
+      - NEXT_PUBLIC_API_URL=http://localhost:3050/
+      - WDS_SOCKET_PORT=0
+      - NEXTAUTH_URL=http://localhost:3050/
+      - NEXTAUTH_SECRET=ekWvcHLAwQQPVFiRHJae05WoSn6LEums7VK/pU1ikFs=
+      - BACK_API_URL=http://localhost:3050/backend/
+      - BACK_API_AUTH_URL=http://10.5.0.5:3010/
+      - STRIPE_PUBLIC_KEY=pk_test_Dt4ZBItXSZT1EzmOd8yCxonL
+  bmp:
+    build:
+      dockerfile: Dockerfile
+      context: ./simulation-procycla/BMP_service
+    restart: always
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.7
+  cstr:
+    build:
+      dockerfile: Dockerfile
+      context: ./simulation-procycla/CSTR_service
+    restart: always
+    ports:
+      - "7777:80"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.8
+  wrangling-service:
+    build:
+      dockerfile: Dockerfile
+      context: ./simulation-procycla/wrangling_service
+    restart: always
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.9
+    
+  nginx:
+    networks:
+        vpcbr:
+          ipv4_address: 10.5.0.10
+    depends_on:
+      - api
+      - web
+    build:
+      dockerfile: Dockerfile.nginx
+      context: .
+    ports:
+      - "3050:80"
+    restart: always
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/24
+         gateway: 10.5.0.1
+

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+      - name: web
+        image: registry.digitalocean.com/in2ai-sim/web
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: NEXT_PUBLIC_API_URL
+          value: web-clusterip:3000
+        - name: WDS_SOCKET_PORT
+          value: '0'
+        - name: NEXTAUTH_URL
+          value: web-clusterip:3000
+        - name: NEXTAUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: NEXT_AUTH_SECRET
+        - name: BACK_API_URL
+          value: api-clusterip:3010
+        - name: BACK_API_URL_AUTH
+          value: api-clusterip:3010
+        - name: STRIPE_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: STRIPE_PUBLIC_KEY
+
