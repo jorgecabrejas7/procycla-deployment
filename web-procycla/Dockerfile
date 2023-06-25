@@ -11,4 +11,4 @@ RUN npm install
 COPY  . .
 ENV BACK_API_AUTH_URL="enviroment.com"
 RUN npm run build
-CMD npm start
+CMD BACK_API_AUTH_URL="test.com" npm start
