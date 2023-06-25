@@ -36,7 +36,7 @@ jobs:
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v3
         with:
-          exec: helm upgrade cstr helm-charts/generic/apps --install --wait --atomic --namespace=default --values=helm-charts/generic/cstr-values.yaml --set "svc[0].docker_image=${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/cstr:latest" --timeout 5m
+          exec: helm upgrade cstr helm-charts/generic/apps --install --wait --atomic --namespace=default --values=helm-charts/generic/cstr-values.yaml --set "svc[0].docker_image=${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/cstr:latest" --timeout 60m
           
 
 
