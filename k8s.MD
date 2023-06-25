@@ -16,7 +16,7 @@ Wait time : ~ 5-15 mins on DO side
 # Create  personal token [ Digital Ocean console ] 
 
 Visit DO console : https://cloud.digitalocean.com/account/api/tokens
-
+z`
 CLick ->  Generate New Token -> Save the generatedValue (Important)
 
 # Authenticate with a cluster via doctl  [command line ] 
@@ -120,7 +120,7 @@ Default user name of DB use is "root" :
 #### Connect to DB with SQL (optional; veryfing the creds)
 
     kubectl run my-release-mariadb-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mariadb:10.11.3-debian-11-r5 --namespace default --command -- bash
-    mysql -h my-release-mariadb.default.svc.cluster.local -uroot -p my_database
+    mysql -h my-release-mariadb.default.svc.cluster.local -u root -p my_database
 
 
 

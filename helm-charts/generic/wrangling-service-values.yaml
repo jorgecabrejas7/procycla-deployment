@@ -8,7 +8,7 @@ svc:
     imagePullPolicy : Always
     # path_check: "html"
     tls_secret: ""
-    host : "wrangling-service.174.138.104.100.nip.io"
+    host : "wrangling-service.24.199.74.71.nip.io"
     apiPrefix: "/"
     resources:
       memoryMiB: 300

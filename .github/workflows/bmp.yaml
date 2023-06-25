@@ -1,4 +1,4 @@
-name: BPM Build, Push, Install
+name: BMP Build, Push, Install
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
         run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_K8S_ID }} 
 
       - name: Push image to DO Container Registry 
-        run: docker push ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/bpm:latest
+        run: docker push ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/bmp:latest
 
 
       - name: Deploy
