@@ -16,8 +16,10 @@ export function apiUrl(url, api_url = undefined) {
 export async function unprotectedFetch(url, method = "get", body = null, t = null) {
     try {
         console.log(`Fetching ${url} from apifetch unprotected`)
-        console.log("Lo coge el cambio")
-        console.log("Let's see what's wrong, hero you have env ", process.env)
+        for (let key in process.env) {
+            console.log(`${key}: ${process.env[key]}`);
+          }
+          
         const res = await fetch(url, {
             method: method,
             headers: new Headers({
