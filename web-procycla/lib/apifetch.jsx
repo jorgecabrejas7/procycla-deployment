@@ -15,6 +15,7 @@ export function apiUrl(url, api_url = undefined) {
 
 export async function unprotectedFetch(url, method = "get", body = null, t = null) {
     try {
+        console.log(`Fetching ${url} from apifetch unprotected`)
         const res = await fetch(url, {
             method: method,
             headers: new Headers({
