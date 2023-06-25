@@ -1,0 +1,18 @@
+svc:
+  - name: cstr
+    namespace: default
+    docker_image: nginx:latest
+    replicas: 1
+    svcPort: 80
+    targetPort: 80
+    imagePullPolicy : Always
+    # path_check: "html"
+    tls_secret: ""
+    host : "cstr.174.138.104.100.nip.io"
+    apiPrefix: "/"
+    resources:
+      memoryMiB: 300
+      cpuMilli: 300
+    env:
+    # - name: "NODE_ENV"
+    #   value: "production"
