@@ -111,7 +111,6 @@ Docs : https://github.com/bitnami/charts/blob/main/bitnami/mariadb/Chart.yaml
 
     helm install my-release oci://registry-1.docker.io/bitnamicharts/mariadb  --version 12.2.4  --set auth.password=procycla --set auth.password=procycla --set auth.database=procycla --set auth.rootPassword=procycla
 
-
 ####  Get the DB root user password
 
 Default user name of DB use is "root" : 

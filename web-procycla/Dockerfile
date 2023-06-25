@@ -9,6 +9,6 @@ COPY package-lock.json .
 RUN npm install
 
 COPY  . .
-
+ENV BACK_API_AUTH_URL="enviroment.com"
 RUN npm run build
 CMD npm start
