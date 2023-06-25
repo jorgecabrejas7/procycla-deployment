@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build image 
         run: 
-          docker build -t ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/bpm:latest -f ./simulation-procycla/BMP_service/Dockerfile ./simulation-procycla/BMP_service
+          docker build -t ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/bmp:latest -f ./simulation-procycla/BMP_service/Dockerfile ./simulation-procycla/BMP_service
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
