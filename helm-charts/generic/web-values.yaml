@@ -15,7 +15,7 @@ svc:
       cpuMilli: 300
     env:
     - name: "NODE_ENV"
-      value: "development"
+      value: "dev"
     - name: "HTTPS"
       value: "false"
     - name: "NEXT_PUBLIC_API_URL"
