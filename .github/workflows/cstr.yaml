@@ -27,7 +27,7 @@ jobs:
         run: doctl registry login --expiry-seconds 600
         
       - name: Save DigitalOcean kubeconfig
-        run: doctl kubernetes cluster kubeconfig save bd52dbd1-3845-4b36-b71d-1ca296c67e07 
+        run: doctl kubernetes cluster kubeconfig save ${{ secrets.DIGITALOCEAN_K8S_ID }}
 
       - name: Push image to DO Container Registry 
         run: docker push ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/cstr:latest
