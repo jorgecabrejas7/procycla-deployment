@@ -31,7 +31,6 @@ jobs:
       - name: Push image to DO Container Registry 
         run: docker push ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/api:latest
 
-m
       - name: Deploy
         uses: WyriHaximus/github-action-helm3@v3
         with:
