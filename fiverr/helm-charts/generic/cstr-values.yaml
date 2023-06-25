@@ -1,5 +1,5 @@
 svc:
-  - name: bpm
+  - name: cstr
     namespace: default
     docker_image: nginx:latest
     replicas: 1
@@ -8,7 +8,7 @@ svc:
     imagePullPolicy : Always
     # path_check: "html"
     tls_secret: ""
-    host : "bpm.174.138.104.100.nip.io"
+    host : "cstr.24.199.71.85.nip.io"
     apiPrefix: "/"
     resources:
       memoryMiB: 300
@@ -16,5 +16,3 @@ svc:
     env:
     # - name: "NODE_ENV"
     #   value: "production"
-
-# Hello

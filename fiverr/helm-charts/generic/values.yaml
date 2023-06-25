@@ -1,5 +1,5 @@
 svc:
-  - name: bpm
+  - name: nginx-service
     namespace: default
     docker_image: nginx:latest
     replicas: 1
@@ -8,13 +8,11 @@ svc:
     imagePullPolicy : Always
     # path_check: "html"
     tls_secret: ""
-    host : "bpm.174.138.104.100.nip.io"
-    apiPrefix: "/"
+    host : "nginx.24.199.71.85.nip.io"
+    apiPrefix: "/nginx"
     resources:
-      memoryMiB: 300
-      cpuMilli: 300
+      memoryMiB: 100
+      cpuMilli: 100
     env:
-    # - name: "NODE_ENV"
-    #   value: "production"
-
-# Hello
+    - name: "VARIABLE_NAME"
+      value: "VARIABLE_VALUE"
