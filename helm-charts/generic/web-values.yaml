@@ -15,7 +15,7 @@ svc:
       cpuMilli: 300
     env:
     - name: "NODE_ENV"
-      value: "production"
+      value: "development"
     - name: "HTTPS"
       value: "false"
     - name: "NEXT_PUBLIC_API_URL"
@@ -32,5 +32,3 @@ svc:
       value: "http://api.24.199.74.71.nip.io/"
     - name: "STRIPE_PUBLIC_KEY"
       value: "pk_test_Dt4ZBItXSZT1EzmOd8yCxonL"
-  
-  # Hello
