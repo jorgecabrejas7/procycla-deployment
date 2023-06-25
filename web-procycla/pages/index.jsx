@@ -22,8 +22,7 @@ export default () => {
     useEffect(() => {
         if(session.status != "loading") {
             const loadPlans = async () => {
-                console.log(process.env)
-                console.log(`${process.env.NEXTAUTH_URL} ${process.env.BACK_API_URL} ${process.env.STRIPE_PUBLIC_KEY} ${process.env.BACK_API_AUTH_URL}`)
+                console.log("Keys in enviroment: ", Object.keys(process.env).length);
                 const res = await unprotectedFetch(process.env.BACK_API_URL + "plan", "get", null, t);
                 if(res.status === 200) {
                     const data = await res.json();
