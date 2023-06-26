@@ -22,3 +22,5 @@ Example: https://pastebin.com/raw/DCGH8G0z
 ## Build
 1. ``npm run build``
 2. ``npm start``
+
+T
