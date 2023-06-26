@@ -14,6 +14,8 @@ svc:
       memoryMiB: 300
       cpuMilli: 300
     env:
+      - name: ACCESS_TOKEN_EXPIRES_IN
+        value: 30d
       - name: "DB_NAME"
         value: "procycla"
       - name: "DB_USER"
