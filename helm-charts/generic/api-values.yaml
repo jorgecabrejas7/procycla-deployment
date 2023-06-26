@@ -15,11 +15,11 @@ svc:
       cpuMilli: 300
     env:
       - name: "DB_NAME"
-        value: "my_database"
+        value: "procycla"
       - name: "DB_USER"
-        value: "root"
+        value: "procycla"
       - name: "DB_PASS"
-        value: "SRDHpI1XnG"
+        value: "procycla"
       - name: "DB_HOST"
         value: "my-release-mariadb"
       - name: "DB_PORT"
@@ -35,7 +35,7 @@ svc:
       - name: "SALT_ROUNDS"
         value: "10"
       - name: "DB_FORCE_ALTER"
-        value: "false"
+        value: "false"  
       - name: "DB_FORCE_SYNC"
         value: "false"
       - name: "ACCESS_TOKEN_SECRET"
