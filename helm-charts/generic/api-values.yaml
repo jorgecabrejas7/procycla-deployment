@@ -17,7 +17,7 @@ svc:
       - name: "DB_NAME"
         value: "procycla"
       - name: "DB_USER"
-        value: "procycla"
+        value: "root"
       - name: "DB_PASS"
         value: "procycla"
       - name: "DB_HOST"
