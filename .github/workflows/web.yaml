@@ -41,3 +41,6 @@ jobs:
       #   uses: actions-hub/kubectl@master
       #   with:
       #     args: rollout restart deployment web
+      - name: Remove untagged manifest
+        run: doctl registry garbage-collection start --include-untagged-manifests
+
