@@ -2,7 +2,7 @@ svc:
   - name: bpm
     namespace: default
     docker_image: nginx:latest
-    replicas: 1
+    replicas: 2
     svcPort: 80
     targetPort: 80
     imagePullPolicy : Always
