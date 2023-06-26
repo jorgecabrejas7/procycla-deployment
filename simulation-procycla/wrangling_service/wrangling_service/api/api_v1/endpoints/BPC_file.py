@@ -10,12 +10,11 @@ async def load_BPC_file(body: UploadFile, wrangling_service: WranglingService = 
     try:
         return wrangling_service.load_BPC_file(body.file.read())
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+         raise HTTPException(status_code=400, detail=str(e))
     
 @router.post("/process_data")
 async def process_BPC_file(data: Samples, wrangling_service: WranglingService = Depends(WranglingService)) -> OutputModel:
     try:
         return wrangling_service.process_BPC_file(data)
     except Exception as e:
-		print(f"BPC_file path: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e)) 
+         raise HTTPException(status_code=400, detail=str(e))
