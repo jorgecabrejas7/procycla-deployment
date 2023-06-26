@@ -42,5 +42,5 @@ jobs:
       #   with:
       #     args: rollout restart deployment web
       - name: Remove untagged manifest
-        run: doctl registry garbage-collection start --include-untagged-manifests
+        run: doctl registry garbage-collection start --include-untagged-manifests --force
 
