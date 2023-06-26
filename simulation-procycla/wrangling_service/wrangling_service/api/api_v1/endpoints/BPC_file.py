@@ -17,4 +17,5 @@ async def process_BPC_file(data: Samples, wrangling_service: WranglingService = 
     try:
         return wrangling_service.process_BPC_file(data)
     except Exception as e:
+        print(f"BPC_file path: {e}")
          raise HTTPException(status_code=400, detail=str(e))

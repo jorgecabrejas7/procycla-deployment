@@ -74,8 +74,10 @@ class WranglingService():
         except (BPCSamplesDataException, BPCGlobalDataException, BPCRecordedDataException, BPCParseException, ClusteringException) as e:
             raise e
         except UnicodeError as e:
+            print(f"at core: {e}")
             raise Exception("Unable to read given file format")
         except Exception as e:
+            print(f"at core: {e}")
             raise Exception("Could not load BPC file")
         
     def process_BPC_file(self, samples_list):
