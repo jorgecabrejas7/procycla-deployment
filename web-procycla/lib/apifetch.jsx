@@ -30,6 +30,7 @@ export async function unprotectedFetch(url, method = "get", body = null, t = nul
 
         if(res.status !== 200) {
             const { message } = await res.json();
+            console.log(message)
             
             if(message.includes('INVALID_CREDENTIALS') || message.includes('BANNED_ACCOUNT')) signOut();
             else toast.error(t === null ? message : t(message));
