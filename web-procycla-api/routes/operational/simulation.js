@@ -356,6 +356,7 @@ router.get("/start", async (req, res) => {
         res.sendStatus(200);
     }
     catch(error) {
+        console.error(error)
         res.status(400).json({ message: error.message });
     }
 });

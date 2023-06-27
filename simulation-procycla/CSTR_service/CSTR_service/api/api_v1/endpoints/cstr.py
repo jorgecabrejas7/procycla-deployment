@@ -11,8 +11,8 @@ async def run_cstr(data: CSTRData, cstr_service: CSTRService = Depends(CSTRServi
     try:
         data = data.dict()
         result = cstr_service.run_adm1(user_input=data)
-        return result
         print(f'/run SUCCESS: {result}')
+        return result
     except Exception as e:
         print(f'/run ERROR: {str(e)}')
         raise HTTPException(status_code=400, detail=str(e))
@@ -22,8 +22,8 @@ async def propagate_uncertainty(data: UncertaintyData, cstr_service: CSTRService
     try:
         data = data.dict()
         result = cstr_service.propagate_uncertainty(user_input=data)
-        return result
         print(f'/uncertainty_propagation SUCCESS: {result}')
+        return result
     except Exception as e:
         print(f'/uncertainty_propagation ERROR: {str(e)}')
         raise HTTPException(status_code=400, detail=str(e))
