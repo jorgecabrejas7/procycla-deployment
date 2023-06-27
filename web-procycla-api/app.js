@@ -12,6 +12,8 @@ const fileUpload = require("express-fileupload");
 
 //Express configuration
 const app = express();
+const timeoutInMilliseconds = 1800000;
+app.set('serverTimeout', timeoutInMilliseconds);
 app.use(express.json({ limit: '500mb' }));
 app.set("trust proxy", "loopback");
 app.use(bodyParser.json());
