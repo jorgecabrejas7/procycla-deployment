@@ -101,8 +101,9 @@ const startSimulation = async (simulation) => {
                             method: "post",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(body)
-                        });
-                        console.log(`En API simulation el cstr da response: ${JSON.stringify(cstrResponse.json())}`)
+                        }).then(console.log(`En API simulation el cstr da response: ${JSON.stringify(cstrResponse.json())}`))
+                        .catch(error => {console.error(error)});
+                            
 
                         if(cstrResponse.status == 200) cstrResponses.push(await cstrResponse.json());
                         else cstrErrors.push(cstrResponse.statusText);
