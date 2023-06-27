@@ -97,15 +97,20 @@ const startSimulation = async (simulation) => {
                             progress_url: process.env.APP_URL + "/simulation/progress?simulation_id=" + dbSimulation.id + "&substrate_index=" + substrateIndex + "&length=" + bmpResult.substrates.length + "&index=" + index
                         };
                         
-                        const cstrResponse = await fetch(process.env.CSTR_API_URL + "/api/v1/cstr/run", {
-                            method: "post",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(body)
-                        }).then(console.log(`En API simulation el cstr da response: ${JSON.stringify(cstrResponse.json())}`))
-                        .catch(error => {console.error(error)});
-                            
+                        try {
+                            const cstrResponse = await fetch(process.env.CSTR_API_URL + "/api/v1/cstr/run", {
+                              method: "post",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify(body)
+                            });
+                          
+                            const cstrResponseJson = await cstrResponse.json();
+                            console.log(`En API simulation el cstr da response: ${JSON.stringify(cstrResponseJson)}`);
+                          } catch (error) {
+                            console.error(error);
+                          }
 
-                        if(cstrResponse.status == 200) cstrResponses.push(await cstrResponse.json());
+                        if(cstrResponse.status == 200) cstrResponses.push(cstrResponseJson);
                         else cstrErrors.push(cstrResponse.statusText);
                     }
 
