@@ -102,6 +102,7 @@ const startSimulation = async (simulation) => {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(body)
                         });
+                        console.log(`En API simulation el cstr da response: ${cstrResponse}`)
 
                         if(cstrResponse.status == 200) cstrResponses.push(await cstrResponse.json());
                         else cstrErrors.push(cstrResponse.statusText);
@@ -126,6 +127,7 @@ const startSimulation = async (simulation) => {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(body)
                         });
+                        console.log(`En API simulation el cstr da uncertainty: ${cstrUncertaintyPropagationResponse}`)
 
                         if(cstrUncertaintyPropagationResponse.status == 200) {
                             const energy = cstrResponses[0].results.filter(r => r.name == "energy")[0];
@@ -329,22 +331,7 @@ router.post("/wrangling/procycla/load_file", async (req, res) => {
 });
 
 //Start Simulation
-/**
- * @openapi
- * /simulation/start:
- *   get:
- *     summary: Start simulation
- *     tags: [Simulation]
- *     parameters:
- *       - in: query
- *         name: simulation_id
- *         schema:
- *           type: integer
- *         required: true
- *         description: Simulation ID
- *     responses:
- *       200:
- *         description: Simulation started
+/**startSimulation
  *       400:
  *         description: Bad request
  *         content:
