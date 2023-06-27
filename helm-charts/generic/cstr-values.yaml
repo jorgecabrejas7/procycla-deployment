@@ -2,7 +2,7 @@ svc:
   - name: cstr
     namespace: default
     docker_image: nginx:latest
-    replicas: 3
+    replicas: 1
     svcPort: 80
     targetPort: 80
     imagePullPolicy : Always
