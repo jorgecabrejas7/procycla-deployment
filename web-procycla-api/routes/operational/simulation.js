@@ -102,7 +102,7 @@ const startSimulation = async (simulation) => {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(body)
                         });
-                        console.log(`En API simulation el cstr da response: ${cstrResponse}`)
+                        console.log(`En API simulation el cstr da response: ${cstrResponse.json()}`)
 
                         if(cstrResponse.status == 200) cstrResponses.push(await cstrResponse.json());
                         else cstrErrors.push(cstrResponse.statusText);
@@ -127,7 +127,7 @@ const startSimulation = async (simulation) => {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(body)
                         });
-                        console.log(`En API simulation el cstr da uncertainty: ${cstrUncertaintyPropagationResponse}`)
+                        console.log(`En API simulation el cstr da uncertainty: ${cstrUncertaintyPropagationResponse.json()}`)
 
                         if(cstrUncertaintyPropagationResponse.status == 200) {
                             const energy = cstrResponses[0].results.filter(r => r.name == "energy")[0];
