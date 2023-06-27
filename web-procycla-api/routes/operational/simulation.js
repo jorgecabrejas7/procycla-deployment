@@ -268,6 +268,7 @@ router.post("/wrangling/BPC/process_data", async (req, res) => {
         if(!data) throw new Error("API.INVALID_REQUEST");
 
         const response = await fetch(process.env.WRANGLING_API_URL + "/api/v1/wrangling/BPC/process_data", { method: 'post', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } });
+        console.log(reponse)
         if(response.status != 200) throw new Error("API.INTERNAL_ERROR");
 
         const result = await response.json();

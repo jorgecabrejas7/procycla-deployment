@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build image 
         run: 
-          docker build --build-arg NODE_ENV=production --build-arg HTTPS=false --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} --build-arg WDS_SOCKET_PORT=0 --build-arg NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} --build-arg NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} --build-arg BACK_API_URL=${{ secrets.BACK_API_URL }} --build-arg BACK_API_AUTH_URL=${{ secrets.BACK_API_AUTH_URL }} --build-arg STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY }} -t ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/web:latest -f ./web-procycla/Dockerfile ./web-procycla 
+          docker build --build-arg NODE_ENV=production --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} --build-arg WDS_SOCKET_PORT=0 --build-arg NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} --build-arg NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} --build-arg BACK_API_URL=${{ secrets.BACK_API_URL }} --build-arg BACK_API_AUTH_URL=${{ secrets.BACK_API_AUTH_URL }}     --build-arg HTTPS=false  --build-arg STRIPE_PUBLIC_KEY=${{ secrets.STRIPE_PUBLIC_KEY }} -t ${{ secrets.DIGITALOCEAN_REGISTRY_NAME }}/web:latest -f ./web-procycla/Dockerfile ./web-procycla 
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
